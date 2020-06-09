@@ -1,16 +1,13 @@
-**quick-run-jar**
+**Examples of command line programs with java**
 
-Proyecto simple para generar un jar con dependencias incluídas.
+*****Apache Commons CLI*****
 
-- Logback 1.2.3
-- Junit 4.13
-- AssertJ
-- Script de ejecución startup.sh
+*mvn exec:java -DmainClass="ar.com.jekipes.apacheCli.CliRandom" -Dexec.args="--min 5 --max 20 -c java.security.SecureRandom -s 123"*
 
-Construír y ejecutar.
+*Picocli*
 
-mvn clean install 
-sh startup.sh
+*mvn -q exec:java -DmainClass="ar.com.jekipes.picocli.CheckSum" -Dexec.args="pom.xml"*
 
-Generar el arquetipo desde el proyecto.
+*mvn -q exec:java -DmainClass="ar.com.jekipes.picocli.Login" -Dexec.args="-u=juan -p"*
 
+*mvn -q exec:java -DmainClass="ar.com.jekipes.picocli.git.Git"*
