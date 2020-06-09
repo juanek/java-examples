@@ -15,6 +15,7 @@ public class Game {
     public Game(Result result, String message,Params params) {
         this.result = result;
         this.message = message;
+        params.incrementParams(result);
         this.numComputerWon = params.getNumComputerWon();
         this.numPlayerWon = params.getNumPlayerWon();
         this.numTie = params.getNumTie();

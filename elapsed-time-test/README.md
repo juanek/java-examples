@@ -1,16 +1,14 @@
-**quick-run-jar**
+**Calculate estimated time in a program**
 
-Proyecto simple para generar un jar con dependencias incluídas.
+*mvn -q exec:java -Dexec.mainClass="ar.com.jekipes.stopwatch.CurrentTimeMillis"*
 
-- Logback 1.2.3
-- Junit 4.13
-- AssertJ
-- Script de ejecución startup.sh
+*mvn -q exec:java -Dexec.mainClass="ar.com.jekipes.stopwatch.InstantTime"*
 
-Construír y ejecutar.
+*mvn -q exec:java -Dexec.mainClass="ar.com.jekipes.stopwatch.NanoTimeMillis"
 
-mvn clean install 
-sh startup.sh
+*****StopWatch form Apache Commons*****
 
-Generar el arquetipo desde el proyecto.
+* mvn -q exec:java -Dexec.mainClass="ar.com.jekipes.stopwatch.StopWatchCommons"*
+
+
 

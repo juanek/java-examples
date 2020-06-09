@@ -1,16 +1,15 @@
-**quick-run-jar**
+**Example with Java Enum**
 
-Proyecto simple para generar un jar con dependencias incluídas.
+Simple game rock-paper-scissors.
 
 - Logback 1.2.3
 - Junit 4.13
 - AssertJ
-- Script de ejecución startup.sh
+- Script of execution startup.sh
 
-Construír y ejecutar.
+**Build and run.**
 
-mvn clean install 
-sh startup.sh
+_mvn clean install_  
+_sh startup.sh_
 
-Generar el arquetipo desde el proyecto.
 

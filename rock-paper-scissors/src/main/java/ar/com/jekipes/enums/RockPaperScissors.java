@@ -3,10 +3,13 @@ package ar.com.jekipes.enums;
 import java.util.Scanner;
 
 /**
- * mvn exec:java -Dexec.mainClass="ar.com.jekipes.enums.RockPaperScissors"
- * @author juan kipes
+ * mvn -q exec:java -Dexec.mainClass="ar.com.jekipes.enums.RockPaperScissors"
+ *
+ * @author Juan E. Kipes
  */
 public class RockPaperScissors {
+
+    private static String text = "(Ingresa s para Tijera, p para Papel, t para Piedra, q para salir): ";
 
     boolean gameOver = false;
     HandSign playerMove = null;
@@ -23,16 +26,15 @@ public class RockPaperScissors {
 
     public void start() {
         Scanner in = new Scanner(System.in);
+        System.out.println("");
         System.out.println("Vamos a comenzar...");
         while (!gameOver) {
-            System.out.printf("%nPiedra-Papel-Tijera");
-            System.out.println("\n");
+            System.out.println("Piedra-Papel-Tijera");
             // jugador
             // uso de do-while loop para manejar entrada inválida
             boolean validInput;
             do {
-                System.out.print("\n(Ingresa s para Tijera "
-                        + ", p para Papel, t para Piedra, q para salir): ");
+                System.out.print(text);
                 char inChar = in.next().toLowerCase().charAt(0);
                 validInput = true;
                 switch (inChar) {
@@ -49,12 +51,13 @@ public class RockPaperScissors {
                         playerMove = HandSign.ROCK;
                         break;
                     default:
-                        System.out.println("Opción inválido, intente otra vez...");
+                        System.out.println("Opción inválida, intente otra vez...");
                         validInput = false;
                         break;
                 }
             } while (!validInput);
-            System.out.println("Tu Turno: "+playerMove);
+            System.out.println("");
+            System.out.println("Tu Turno: " + playerMove);
             if (!gameOver) {
 
                 Game game = play(gameMode, playerMove,
@@ -64,10 +67,10 @@ public class RockPaperScissors {
             }
         }
         System.out.println("-------------------------------------------------\n");
-        System.out.printf("%nNúmero de juegos: " + numTrials);
+        System.out.printf("Número de juegos: " + numTrials);
         System.out.printf("\nYo gané  %d(%.2f%%).\n"
-                + "Tu ganaste %d(%.2f%%).\n"
-                + "Empatamos %d(%.2f%%).%n.",
+                        + "Tu ganaste %d(%.2f%%).\n"
+                        + "Empatamos %d(%.2f%%).%n",
                 numComputerWon, 100.0 * numComputerWon / numTrials,
                 numPlayerWon, 100.0 * numPlayerWon / numTrials,
                 numTie, 100.0 * numTie / numTrials);
@@ -83,7 +86,7 @@ public class RockPaperScissors {
     }
 
     private Game play(IGameMode igameMode,
-            HandSign playerMove, Params params) {
+                      HandSign playerMove, Params params) {
         return igameMode.proccesGame(playerMove, params);
     }
 
