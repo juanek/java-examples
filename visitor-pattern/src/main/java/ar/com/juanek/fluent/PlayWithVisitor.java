@@ -16,33 +16,25 @@ public class PlayWithVisitor {
     public static void main(String[] args) {
         Car renault = new Car();
 
-        //Los comportamientos los guardo en mapa
-        //  Objects Car,Wheel etc , String lo que produce el Visitor
-        Map<Class<?>, Function<Object, String>> registry = new HashMap<>();
+//        VisitorInitializer<String> visitorInitializer = builder -> {
+//            builder.register(Car.class, car -> "Visited car " + car);
+//            builder.register(Body.class, body -> "Visited body " + body);
+//            builder.register(Engine.class, engine -> "Visited engine " + engine);
+//            builder.register(Wheel.class, whell -> "Visited whell " + whell);
+//        };
 
-        VisitorBuilder<String> visitorBuilder =
-                (type,function) -> registry.put(type,function);
+        VisitorInitializer<String> visitorInitializer =
+                Visitor.<String>forType(Car.class).execute(car -> "Visited car " + car);
+//                        .forType(Body.class).execute(body -> "Visited body " + body)
+//                        .forType(Engine.class).execute(engine -> "Visited engine " + engine)
+//                        .forType(Wheel.class).execute(whell -> "Visited whell " + whell);
 
-
-
-        visitorBuilder.register(Car.class, car -> "Visited car " + car);
-        visitorBuilder.register(Body.class, body -> "Visited body " + body);
-        visitorBuilder.register(Engine.class, engine -> "Visited engine " + engine);
-        visitorBuilder.register(Wheel.class, whell -> "Visited whell " + whell);
-
-        Visitor<String> visitor = o -> registry.get(o.getClass()).apply(o);
+        Visitor<String> visitor = Visitor.of(visitorInitializer);
 
         String visit = visitor.visit(renault);
         System.out.println(visit);
 
         String visit1 = visitor.visit(renault.getBody());
         System.out.println(visit1);
-
-//        String accept = renault.accept(visitor, Collectors.joining(" -- "));
-//        System.out.println(accept);
-//
-//
-//        List<String> accepts = renault.accept(visitor, Collectors.toList());
-//        accepts.forEach(System.out::println);
     }
 }
